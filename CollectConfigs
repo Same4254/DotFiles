@@ -1,0 +1,14 @@
+sudo rm -rf ./.config
+
+sudo mkdir -p ./.config/i3
+sudo cp -r ~/.config/i3 ./.config
+
+sudo mkdir ./.config/i3blocks
+sudo cp -r ~/.config/i3blocks ./.config
+
+sudo mkdir ./.config/nvim
+sudo cp -r ~/.config/nvim ./.config
+
+sudo cp -r ~/.urxvt ./
+
+sudo cp ~/.Xresources ./
