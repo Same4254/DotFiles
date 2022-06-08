@@ -11,10 +11,15 @@ suto apt-get install shutter -y
 sudo apt-get install feh -y
 sudo apt-get install i3gaps -y
 
+sudo apt-get install openssh-server -y
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
 sudo mkdir ~/Pictures/Backgrounds
 sudo cp ./BestBackground.png ~/Pictures/Backgrounds
 
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 sudo 'cp' -rf ./.config/* ~/.config
 
