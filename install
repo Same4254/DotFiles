@@ -1,5 +1,5 @@
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo add-apt-repository ppa:regolith-linux/release
+sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo add-apt-repository ppa:regolith-linux/release -y
 
 sudo apt update -y
 
