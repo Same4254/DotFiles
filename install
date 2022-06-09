@@ -1,3 +1,6 @@
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo add-apt-repository ppa:regolith-linux/release
+
 sudo apt update -y
 
 sudo apt-get install i3 -y
@@ -9,7 +12,8 @@ sudo apt-get install python3-pip -y
 sudo pip3 install cmake
 suto apt-get install shutter -y
 sudo apt-get install feh -y
-sudo apt-get install i3gaps -y
+
+sudo apt install i3-gaps -y
 
 sudo apt-get install openssh-server -y
 sudo systemctl enable ssh
@@ -18,9 +22,35 @@ sudo systemctl start ssh
 sudo mkdir ~/Pictures/Backgrounds
 sudo cp ./BestBackground.png ~/Pictures/Backgrounds
 
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 sudo 'cp' -rf ./.config/* ~/.config
 
-nvim +'PlugInstall --sync' +qa
+nvim --headless +'PlugInstall --sync' +qa
+
+sudo rm -f ~/.Xresources
+sudo cp ./.Xresources ~/
+
+xrdb ~/.Xresources
+
+wget https://github.com/be5invis/Iosevka/releases/download/v15.5.0/ttc-iosevka-15.5.0.zip
+
+unzip ttc-iosevka-15.5.0.zip
+sudo mkdir /usr/local/share/fonts/iosevka-font 
+sudo mv *.ttc /usr/local/share/fonts/iosevka-font/
+sudo fc-cache -fv
+
+sudo rm ttc-iosevka-15.5.0.zip
+
+sudo apt-get install build-essential -y
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash
+
+wget https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz \ -O lf-linux-amd64.tar.gz
+
+tar xvf lf-linux-amd64.tar.gz
+chmod +x lf
+sudo mv lf /usr/local/bin
+sudo rm lf-linux-amd64.tar.gz
+
+sudo apt-get install ccls -y
