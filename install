@@ -1,5 +1,4 @@
 sudo add-apt-repository ppa:neovim-ppa/stable -y
-sudo add-apt-repository ppa:regolith-linux/release -y
 
 sudo apt update -y
 
@@ -12,8 +11,7 @@ sudo apt-get install python3-pip -y
 sudo pip3 install cmake
 suto apt-get install shutter -y
 sudo apt-get install feh -y
-
-sudo apt install i3-gaps -y
+sudo apt-get install numlockx -y
 
 sudo apt-get install openssh-server -y
 sudo systemctl enable ssh
@@ -25,7 +23,8 @@ sudo cp ./BestBackground.png ~/Pictures/Backgrounds
 sh -c 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-sudo 'cp' -rf ./.config/* ~/.config
+sudo 'cp' -rf ./.config ~/
+sudo 'cp' -rf ./.urxvt ~/
 
 nvim --headless +'PlugInstall --sync' +qa
 
@@ -45,7 +44,7 @@ sudo rm ttc-iosevka-15.5.0.zip
 
 sudo apt-get install build-essential -y
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash
-sudo apt-get install nodejs
+sudo apt-get install nodejs -y
 
 wget https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz \ -O lf-linux-amd64.tar.gz
 
@@ -55,3 +54,25 @@ sudo mv lf /usr/local/bin
 sudo rm lf-linux-amd64.tar.gz
 
 sudo apt-get install ccls -y
+
+sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+sudo apt install meson -y
+
+sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+libstartup-notification0-dev libxcb-randr0-dev \
+libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
+libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
+autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev -y
+
+git clone https://github.com/Airbender/i3 i3-gaps
+cd i3-gaps
+
+mkdir -p build && cd build
+meson ..
+ninja
+sudo ninja install
+
+cd ../..
+rm -rf i3-gaps
