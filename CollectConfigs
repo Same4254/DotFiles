@@ -6,9 +6,13 @@ sudo cp -r ~/.config/i3 ./.config
 sudo mkdir ./.config/i3blocks
 sudo cp -r ~/.config/i3blocks ./.config
 
+sudo mkdir ./.config/alacritty
+sudo cp -r ~/.config/alacritty ./.config
+
+sudo mkdir ./.config/polybar
+sudo cp -r ~/.config/polybar ./.config
+
+sudo cp ~/.config/compton.conf ./.config
+
 sudo mkdir ./.config/nvim
 sudo cp -r ~/.config/nvim ./.config
-
-sudo cp -r ~/.urxvt ./
-
-sudo cp ~/.Xresources ./

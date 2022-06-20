@@ -6,8 +6,12 @@ Plug 'kwkarlwang/bufresize.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'Same4254/floatLf-nvim'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 Plug 'cdelledonne/vim-cmake'
 "Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'prabirshrestha/vim-lsp'
 Plug 'rust-lang/rust.vim'
@@ -86,11 +90,10 @@ syntax on
 set relativenumber
 set number
 
-set mouse=n
+set mouse=a
 
-
-
-
+" Fixes mouse issues with alacritty
+"set ttymouse=sgr
 
 
 """ ----- COC Config ---- """
