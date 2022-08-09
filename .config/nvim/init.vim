@@ -4,31 +4,38 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'kwkarlwang/bufresize.nvim'
 Plug 'itchyny/lightline.vim'
-Plug 'Same4254/floatLf-nvim'
+Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'cdelledonne/vim-cmake'
 "Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/vim-lsp'
 Plug 'rust-lang/rust.vim'
 
-Plug 'Shougo/deoplete.nvim'
-Plug 'lighttiger2505/deoplete-vim-lsp'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'lighttiger2505/deoplete-vim-lsp'
+
+Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'bfrg/vim-cpp-modern'
 
-"Plug 'ptzz/lf.vim'
 Plug 'voldikss/vim-floaterm'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-" setting with vim-lsp
+set background=dark
+let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_transparent_bg = 1
+autocmd vimenter * ++nested colorscheme gruvbox
+
+"setting with vim-lsp
 if executable('ccls')
    au User lsp_setup call lsp#register_server({
       \ 'name': 'ccls',
@@ -44,25 +51,19 @@ if executable('ccls')
       \ })
 endif
 
+lua <<EOF
+require('nvim-treesitter.configs').setup {
+  ensure_installed = "all",
+  highlight = { enable = true },
+  indent = { enable = true }
+}
+EOF
+
 let g:cmake_link_compile_commands = 1
+let g:cmake_console_size = 8
 
 " Plugin conflict between barbar and lightline
 let g:lightline={ 'enable': {'statusline': 1, 'tabline': 0} }
-
-let g:floatLf_border = 1
-
-let g:floatLf_topleft_border = "╔"
-let g:floatLf_topright_border = "╗"
-let g:floatLf_botleft_border = "╚"
-let g:floatLf_botright_border = "╝"
-let g:floatLf_vertical_border = "║"
-let g:floatLf_horizontal_border = "═"
-
-let g:floatLf_lf_close = 'q'
-let g:floatLf_lf_open = '<c-o>'
-let g:floatLf_lf_split = '<c-x>'
-let g:floatLf_lf_vsplit = '<c-v>'
-let g:floatLf_lf_tab = '<c-t>'
 
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
@@ -100,6 +101,13 @@ nmap <C-l> <C-w><Right>
 syntax on
 set relativenumber
 set number
+set cursorline
+
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 set mouse=a
 
@@ -117,9 +125,6 @@ set hidden
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
