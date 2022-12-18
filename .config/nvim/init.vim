@@ -4,10 +4,14 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'kwkarlwang/bufresize.nvim'
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 Plug 'cdelledonne/vim-cmake'
 "Plug 'octol/vim-cpp-enhanced-highlight'
@@ -16,24 +20,32 @@ Plug 'cdelledonne/vim-cmake'
 "Plug 'prabirshrestha/vim-lsp'
 Plug 'rust-lang/rust.vim'
 
+Plug 'tikhomirov/vim-glsl'
+
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'lighttiger2505/deoplete-vim-lsp'
 
 Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'bfrg/vim-cpp-modern'
+Plug 'bfrg/vim-cpp-modern'
 
 Plug 'voldikss/vim-floaterm'
+
+Plug 'Yggdroot/indentLine'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
-set background=dark
-let g:gruvbox_contrast_dark = 'soft'
-let g:gruvbox_contrast_light = 'hard'
-let g:gruvbox_transparent_bg = 1
-autocmd vimenter * ++nested colorscheme gruvbox
+"set background=dark
+"let g:gruvbox_contrast_dark = 'medium'
+"let g:gruvbox_contrast_light = 'hard'
+"let g:gruvbox_transparent_bg = 1
+"autocmd vimenter * ++nested colorscheme gruvbox
+autocmd vimenter * ++nested colorscheme dracula
+" transparency
+"autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+set termguicolors
 
 "setting with vim-lsp
 if executable('ccls')
@@ -47,18 +59,37 @@ if executable('ccls')
       \   'highlight': { 'lsRanges' : v:true },
       \   'cache': {'directory': stdpath('cache') . '/ccls' },
       \ },
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ 'whitelist': ['c', 'cpp', 'cu', 'objc', 'objcpp', 'cc'],
       \ })
 endif
 
 lua <<EOF
+local actions = require("telescope.actions")
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
   highlight = { enable = true },
   indent = { enable = true }
 }
+require("telescope").setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = actions.close,
+            },
+        },
+    },
+})
 EOF
 
+" Makes fzf close faster
+"if has('nvim')
+"  aug fzf_setup
+"    au!
+"    au TermOpen term://*FZF tnoremap <silent> <buffer><nowait> <esc> <c-c>
+"  aug END
+"end
+
+"let g:fzf_force_termguicolors = 1
 let g:cmake_link_compile_commands = 1
 let g:cmake_console_size = 8
 
@@ -91,17 +122,26 @@ inoremap <Tab> <C-V><Tab>
 "map ; <Right>
 
 nmap <C-s> :w<CR>
-nmap <C-f> :Files<CR>
+
+" fzf mapping
+"nmap <C-f> :Files<CR>
+
+nmap <C-f> :Telescope find_files<CR>
 
 nmap <C-k> <C-w><Up>
 nmap <C-j> <C-w><Down>
 nmap <C-h> <C-w><Left>
 nmap <C-l> <C-w><Right>
 
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+
 syntax on
 set relativenumber
 set number
 set cursorline
+"set autoindent
+set smartindent
 
 augroup CursorLineOnlyInActiveWindow
   autocmd!
