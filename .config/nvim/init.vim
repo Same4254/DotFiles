@@ -136,7 +136,7 @@ local actions = require("telescope.actions")
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
   highlight = { enable = true },
- -- indent = { enable = true }
+  indent = { enable = false }
 }
 
 require("telescope").setup({
@@ -174,14 +174,14 @@ let g:floaterm_keymap_toggle = '<F12>'
 
 let mapleader = " "
 
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set expandtab
 "set autoindent
 "set smartindent
-inoremap <Tab> <C-V><Tab>
+"inoremap <Tab> <C-V><Tab>
 set signcolumn=yes
-"filetype indent on
+" filetype indent on
 
 "set indentexpr=nvim_treesitter#indent()
 

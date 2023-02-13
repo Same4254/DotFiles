@@ -23,6 +23,9 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
+env:
+  TERM: xterm-256color
+
 window:
   # Window dimensions (changes require restart)
   #
@@ -117,7 +120,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+    # family: Menlo
     family: iosevka
+    # family: Monocraft
+    # family: Consolas
+    # family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -156,7 +163,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
