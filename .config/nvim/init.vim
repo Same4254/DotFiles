@@ -201,7 +201,7 @@ set signcolumn=yes
 "
 "map ; <Right>
 
-nmap <C-s> :w<CR>
+nmap <leader>s :wa<CR>
 
 " fzf mapping
 "nmap <C-f> :Files<CR>
