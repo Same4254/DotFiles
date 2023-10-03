@@ -196,34 +196,63 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '#2E3440'
+#     foreground: '#D8DEE9'
+# 
+#   # Normal colors
+#   normal:
+#     black: '#3B4252'
+#     red: '#BF616A'
+#     green: '#A3BE8C'
+#     yellow: '#EBCB8B'
+#     blue: '#81A1C1'
+#     magenta: '#B48EAD'
+#     cyan: '#88C0D0'
+#     white: '#E5E9F0'
+# 
+#   # Bright colors
+#   bright:
+#     black: '#4C566A'
+#     red: '#BF616A'
+#     green: '#A3BE8C'
+#     yellow: '#EBCB8B'
+#     blue: '#81A1C1'
+#     magenta: '#B48EAD'
+#     cyan: '#8FBCBB'
+#     white: '#ECEFF4'
+#   theme: Nord
+
+# Colors (Dracula)
 colors:
   # Default colors
   primary:
-    background: '#2E3440'
-    foreground: '#D8DEE9'
-
+    background: '0x282a36'
+    foreground: '0xf8f8f2'
+ 
   # Normal colors
   normal:
-    black: '#3B4252'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#88C0D0'
-    white: '#E5E9F0'
-
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbbbbbb'
+ 
   # Bright colors
   bright:
-    black: '#4C566A'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#8FBCBB'
-    white: '#ECEFF4'
-  theme: Nord
+    black:   '0x555555'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xcaa9fa'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xffffff'
 
 # Colors (Tomorrow Night)
 #colors:
