@@ -11,7 +11,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'junegunn/fzf.vim'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'mfussenegger/nvim-dap'
 
@@ -21,6 +21,7 @@ Plug 'cdelledonne/vim-cmake'
 
 "Plug 'prabirshrestha/vim-lsp'
 Plug 'rust-lang/rust.vim'
+Plug 'mrcjkb/rustaceanvim'
 
 Plug 'rhysd/vim-llvm'
 Plug 'justinmk/vim-syntax-extra'
@@ -105,7 +106,7 @@ lua <<EOF
 vim.diagnostic.config({
   virtual_text = { severity = {min = vim.diagnostic.severity.ERROR}},
   signs = { severity = {min = vim.diagnostic.severity.ERROR}},
-  update_in_insert = false,
+  update_in_insert = true,
   underline = { severity = {min = vim.diagnostic.severity.ERROR}},
   severity_sort = false,
   float = true,
@@ -121,7 +122,7 @@ require('nvim-treesitter.configs').setup {
 require("telescope").setup({
 
     defaults = {
-		file_ignore_patterns = { "./Debug", "./RelWithDebInfo", "./.stack-work" },
+	file_ignore_patterns = { "./Debug", "./RelWithDebInfo", "./.stack-work", "./target" },
         mappings = {
             i = {
                 ["<esc>"] = actions.close,
@@ -148,8 +149,8 @@ local luasnip = require'luasnip'
 
 cmp.setup({
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
 
     mapping = cmp.mapping.preset.insert({
@@ -319,4 +320,4 @@ set mouse=a
 set updatetime=50
 
 " Fixes mouse issues with alacritty
-"set ttymouse=sgr
+"
